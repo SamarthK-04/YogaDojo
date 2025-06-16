@@ -1,71 +1,131 @@
-import React, { useState } from "react";
-import classData from "../data/classes.json";
+import React from "react";
 import { motion } from "framer-motion";
-import { CalendarIcon } from "lucide-react";
-import { generateICS } from "../utils/CalendarUtils";
 
-type ClassType = (typeof classData)[number]["type"];
+// Data derived from your YogaPackages.csv file
+const classPackages = [
+  {
+    type: "Yoga",
+    title: "Weekday Batches",
+    schedule: "Monday to Friday",
+    timings: {
+      morning: "7:00 - 8:00 AM, 8:15 - 9:15 AM",
+      evening: "5:00 - 6:00 PM",
+    },
+    price: "₹2500",
+    imageUrl: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2120&auto=format&fit=crop", 
+  },
+  {
+    type: "Yoga",
+    title: "Weekend Batches",
+    schedule: "Saturday to Sunday",
+    timings: {
+      morning: "7:00 - 9:00 AM",
+      evening: "5:00 - 7:00 PM",
+    },
+    price: "₹2000",
+    imageUrl: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=80&w=2070&auto=format&fit=crop",
+  },
+  {
+    type: "Yoga",
+    title: "Full Week Batches",
+    schedule: "Monday to Sunday",
+    timings: {
+      morning: "7:00 - 8:00 AM, 8:15 - 9:15 AM",
+      evening: "5:00 - 6:00 PM, 6:15 - 7:15 PM",
+    },
+    price: "₹3500",
+    imageUrl: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?q=80&w=1926&auto=format&fit=crop", 
+  },
+  {
+    type: "Face Yoga",
+    title: "Face Yoga Sessions",
+    schedule: "Monday to Saturday",
+    timings: {
+      morning: "9:15 - 9:40 AM",
+      evening: "4:30 - 5:00 PM",
+    },
+    price: "₹2500",
+    imageUrl: "https://plus.unsplash.com/premium_photo-1664528917247-3aafcb6fd104?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTI1fHxmYWNlJTIweW9nYXxlbnwwfHwwfHx8MA%3D%3D", 
+  },
+];
 
 const Classes: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<ClassType>("Vinyasa");
-  const tabs: ClassType[] = Array.from(
-    new Set(classData.map((c) => c.type))
-  ) as ClassType[];
+  return (
+    <section id="classes" className="pb-20 bg-beige-100">
+      <div className="container mx-auto px-4 pt-8">
+        <h2 className="text-4xl md:text-5xl font-heading text-center text-charcoal-800 mb-12">
+          Explore Our Packages
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {classPackages.map((pkg, index) => (
+            <motion.div
+              key={index}
+              className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col font-body transform hover:-translate-y-2 transition-transform duration-300"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <img src={pkg.imageUrl} alt={pkg.title} className="w-full h-48 object-cover" />
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-2xl font-heading text-charcoal-800 mb-2">{pkg.title}</h3>
+                <p className="text-charcoal-800/80 mb-4">{pkg.schedule}</p>
+                <div className="text-sm text-charcoal-800/90 mb-4">
+                  <p><strong>Morning:</strong> {pkg.timings.morning}</p>
+                  <p><strong>Evening:</strong> {pkg.timings.evening}</p>
+                </div>
+                <div className="mt-auto pt-4 border-t border-charcoal-800/10 flex justify-between items-center">
+                  <p className="text-2xl font-body text-accent">{pkg.price}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
 
-  return (
-    <section id="classes" className="py-20 bg-beige-100">
-      <div className="container mx-auto px-4">
-        <h2 className="font-heading text-4xl text-center mb-10">Classes</h2>
-        <div className="flex justify-center gap-4 mb-8">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-full font-semibold transition ${
-                activeTab === tab
-                  ? "bg-rose-300 text-charcoal-800"
-                  : "bg-sage-400/20 text-charcoal-800 hover:bg-sage-400/40"
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
-        <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          key={activeTab}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {classData
-            .filter((c) => c.type === activeTab)
-            .map((cls) => (
-              <div
-                key={cls.id}
-                className="p-6 bg-white rounded-xl shadow-lg flex flex-col gap-2"
-              >
-                <h3 className="font-heading text-2xl">{cls.title}</h3>
-                <p>
-                  {cls.day} • {cls.time} • {cls.duration} min
-                </p>
-                <p className="text-sm text-sage-400">
-                  Instructor: {cls.instructor}
+      {/* ==================== Full-Width Promotional Banner Start ==================== */}
+      <motion.div
+        className="mt-20 bg-accent/20"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <div className="container mx-auto px-4 py-16 max-w-4xl flex flex-col md:flex-row items-center">
+            {/* --- 1-on-1 Classes Section with responsive border --- */}
+            <div className="w-full md:w-1/2 p-8 text-center border-b-2 border-accent/30 md:border-b-0 md:border-r-2">
+                <h3 className="font-heading text-2xl text-charcoal-800">1-on-1 Personal Training</h3>
+                <p className="font-body text-charcoal-800/80 mt-2">
+                    Get personalized attention and a customized yoga plan tailored to your specific goals and needs. Available on demand.
                 </p>
                 <a
-                  href={generateICS(cls)}
-                  className="mt-auto inline-flex items-center gap-2 text-rose-300 hover:underline"
+                    href="#contact"
+                    className="inline-block mt-4 px-6 py-2 border border-accent text-accent rounded-full font-semibold hover:bg-accent hover:text-white transition-colors"
                 >
-                  <CalendarIcon size={16} />
-                  Add to Calendar
+                    Inquire Now
                 </a>
-              </div>
-            ))}
-        </motion.div>
-      </div>
-    </section>
-  );
+            </div>
+
+            {/* --- Vertical Divider DIV REMOVED --- */}
+
+            {/* --- Online Classes Section --- */}
+            <div className="w-full md:w-1/2 p-8 text-center">
+                <h3 className="font-heading text-2xl text-charcoal-800">Live Online Classes</h3>
+                <p className="font-body text-charcoal-800/80 mt-2">
+                    Practice from the comfort of your home with our live, interactive online sessions. Join our community from anywhere in the world.
+                </p>
+                    <a
+                    href="#contact"
+                    className="inline-block mt-4 px-6 py-2 border border-accent text-accent rounded-full font-semibold hover:bg-accent hover:text-white transition-colors"
+                >
+                    Learn More
+                </a>
+            </div>
+        </div>
+      </motion.div>
+      {/* ==================== Promotional Banner End ==================== */}
+    </section>
+  );
 };
 
 export default Classes;

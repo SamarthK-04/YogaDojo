@@ -28,5 +28,3 @@ Push to GitHub → Vercel import → set build command `npm run build` and outpu
 ## Customisation
 
 Update colours & fonts in `tailwind.config.ts`, replace assets in `src/assets`, and edit content in component files.
-
-Namaste 🙏
