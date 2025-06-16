@@ -24,14 +24,14 @@ const Hero: React.FC = () => (
     >
       <h1 className="font-heading text-beige-100 text-5xl md:text-7xl drop-shadow-lg">
         Find Your Flow at <br />
-        <span className="text-rose-300">[Studio Name]</span>
+        <span className="text-accent">YogaDojo</span>
       </h1>
       <p className="mt-6 text-beige-100 text-lg">
         A sanctuary for mind, body & soul
       </p>
       <a
         href="#booking"
-        className="inline-block mt-10 px-8 py-3 bg-rose-300 text-charcoal-800 rounded-full font-semibold hover:opacity-90 transition"
+        className="inline-block mt-10 px-8 py-3 bg-accent text-charcoal-800 rounded-full font-semibold hover:opacity-90 transition"
       >
         Book Your First Class
       </a>

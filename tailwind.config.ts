@@ -8,12 +8,18 @@ const config: Config = {
         sage:   { 400: "#A3B18A" },
         beige:  { 100: "#F8F7F4" },
         charcoal:{ 800: "#2D2D2A" },
-        rose:   { 300: "#F6BDC0" },
-        navbar: "#d7d5c9"        // warm grey-beige from the logo
+        
+        // You can remove or keep this, as it will be replaced by 'accent'
+        // rose:   { 300: "#F6BDC0" }, 
+
+        // Add your new Golden Ochre accent color
+        accent: "#EAA221",
+
+        navbar: "#d7d5c9"
       },
       fontFamily: {
-        heading: ["Outfit", "sans-serif"],
-        body:    ["Inter", "sans-serif"]
+        heading: ["Elsie", "cursive"], // Changed from Outfit
+        body:    ["Elsie", "cursive"]     // Changed from Inter
       }
     }
   },

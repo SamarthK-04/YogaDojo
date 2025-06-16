@@ -35,7 +35,7 @@ const About: React.FC = () => {
     return () => clearInterval(interval);
   }, [studioImages.length]);
 
-  // Auto-scroll certifications every 4 seconds
+  // Auto-scroll certifications every 4 seconds (only for mobile)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentCertIndex((prevIndex) => 
@@ -45,7 +45,6 @@ const About: React.FC = () => {
 
     return () => clearInterval(interval);
   }, [certifications.length]);
-
 
   return (
     <section id="about" className="py-20 container mx-auto px-4">
@@ -58,7 +57,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-heading text-4xl mb-8">Meet Nishi and Our Mission</h2>
+          <h2 className="font-heading text-4xl mb-8">About Us</h2>
         </motion.div>
 
         {/* Content */}
@@ -146,8 +145,9 @@ const About: React.FC = () => {
             </p>
           </motion.div>
 
+          {/* Mobile Version - Carousel (hidden on desktop) */}
           <motion.div
-            className="max-w-xs mx-auto bg-white rounded-xl shadow-lg overflow-hidden"
+            className="block md:hidden max-w-xs mx-auto bg-white rounded-xl shadow-lg overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -165,6 +165,48 @@ const About: React.FC = () => {
                 />
               ))}
             </div>
+            
+            {/* Dots indicator */}
+            <div className="flex justify-center space-x-2 pb-4">
+              {certifications.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentCertIndex ? 'bg-gray-800' : 'bg-gray-300'
+                  }`}
+                  onClick={() => setCurrentCertIndex(index)}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Desktop Version - Side by Side (hidden on mobile) */}
+          <motion.div
+            className="hidden md:flex justify-center items-center space-x-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={index}
+                className="bg-white rounded-xl shadow-lg overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="w-48 h-32">
+                  <img
+                    src={cert.path}
+                    alt={`${cert.name} Certification`}
+                    className="w-full h-full object-contain p-3"
+                  />
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>

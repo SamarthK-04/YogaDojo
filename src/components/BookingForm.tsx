@@ -100,7 +100,7 @@ const BookingForm: React.FC = () => {
             />
             <button
               type="submit"
-              className="px-6 py-3 bg-rose-300 text-charcoal-800 rounded font-semibold hover:opacity-90 transition"
+              className="px-6 py-3 bg-accent text-charcoal-800 rounded font-semibold hover:opacity-90 transition"
             >
               Book Now
             </button>
