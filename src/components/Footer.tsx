@@ -1,8 +1,8 @@
 import React from "react";
 // Importing more professional, outlined icons
-import { HiOutlineEnvelope, HiOutlinePhone } from "react-icons/hi2";
+import { HiOutlineEnvelope, HiOutlinePhone, HiOutlineMapPin } from "react-icons/hi2"; // MapPin added
 import { AiOutlineInstagram } from "react-icons/ai";
-import { BiLink } from "react-icons/bi"; // Adding a link icon from the screenshot
+import { FaWhatsapp } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   return (
@@ -11,30 +11,40 @@ const Footer: React.FC = () => {
         {/* Social and Contact Icons with Hover Effect */}
         <div className="flex justify-center items-center gap-4 group">
           <a
-            href="tel:+1234567890" // Opens the phone app
+            href="tel:+1234567890"
             aria-label="Call Us"
             className="rounded-full bg-beige-100 text-charcoal-800 h-10 w-10 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-300 hover:!bg-accent hover:!text-beige-100"
           >
             <HiOutlinePhone className="text-xl" />
           </a>
           <a
-            href="mailto:info@yogadojo.com" // Opens the email app
+            href="mailto:info@yogadojo.com"
             aria-label="Email Us"
             className="rounded-full bg-beige-100 text-charcoal-800 h-10 w-10 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-300 hover:!bg-accent hover:!text-beige-100"
           >
             <HiOutlineEnvelope className="text-xl" />
           </a>
           <a
-            href="#" // Placeholder for another link
-            aria-label="Other Link"
+            href="https://wa.me/YOUR_WHATSAPP_NUMBER"
+            aria-label="Chat on WhatsApp"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-beige-100 text-charcoal-800 h-10 w-10 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-300 hover:!bg-accent hover:!text-beige-100"
           >
-            <BiLink className="text-xl" />
+            <FaWhatsapp className="text-xl" />
+          </a>
+          {/* Location Icon Added Here */}
+          <a
+            href="YOUR_Maps_LINK_HERE" // <-- IMPORTANT
+            aria-label="View on Google Maps"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-beige-100 text-charcoal-800 h-10 w-10 flex items-center justify-center transition-all duration-300 group-hover:bg-gray-300 hover:!bg-accent hover:!text-beige-100"
+          >
+            <HiOutlineMapPin className="text-xl" />
           </a>
           <a
-            href="YOUR_INSTAGRAM_LINK_HERE" // Opens Instagram
+            href="YOUR_INSTAGRAM_LINK_HERE"
             aria-label="Instagram"
             target="_blank"
             rel="noopener noreferrer"
@@ -48,14 +58,14 @@ const Footer: React.FC = () => {
         <div>
           <a
             href="mailto:info@yogadojo.com"
-            className="uppercase tracking-widest text-sm hover:text-accent transition-colors duration-300"
+            className="uppercase tracking-widest text-sm hover:text-accent transition-colors duration-300 font-body"
           >
             Contact Us
           </a>
         </div>
 
         {/* Copyright */}
-        <div className="text-center text-xs text-gray-400">
+        <div className="text-center text-xs text-gray-400 font-body">
           <p>© {new Date().getFullYear()} YogaDojo Studio. All Rights Reserved.</p>
           <p>123 Serenity Lane, Wellness City</p>
         </div>

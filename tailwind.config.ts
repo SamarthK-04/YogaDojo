@@ -18,8 +18,8 @@ const config: Config = {
         navbar: "#d7d5c9"
       },
       fontFamily: {
-        heading: ["Elsie", "cursive"], // Changed from Outfit
-        body:    ["Elsie", "cursive"]     // Changed from Inter
+        heading: ["Elsie", "cursive"], 
+        body:    ["EB Garamond", "serif"] 
       }
     }
   },
